@@ -6,9 +6,9 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 sid = SentimentIntensityAnalyzer()
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('universal_tagset')
-#from nltk.corpus import wordnet_ic
+nltk.download('averaged_perceptron_tagger')
+nltk.download('universal_tagset')
+from nltk.corpus import wordnet_ic
 import scipy
 import torch
 #import sklearn
@@ -64,8 +64,7 @@ if len(a) > 2:
     b = a[len(a)-2]
     c = sid.polarity_scores(b)
     score = c['compound']
-#d = polarization_heuristic(sentence)
-d = 0
+d = polarization_heuristic(sentence)
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 EHS = pd.read_csv("EHS.csv")
