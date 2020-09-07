@@ -1,0 +1,14 @@
+nltk==3.5
+numpy==1.18.5
+pandas==1.1.1
+python-Levenshtein==0.12.0
+pytorch-transformers==1.1.0
+scipy==1.5.2
+semantic-text-similarity==1.0.3
+sentence-transformers==0.3.4
+sentencepiece==0.1.91
+streamlit==0.65.2
+tokenizers==0.8.1rc1
+torch==1.6.0
+transformers==3.0.2
+tweet-preprocessor==0.6.0
