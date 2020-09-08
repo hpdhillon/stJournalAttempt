@@ -77,7 +77,6 @@ if st.button('Analysis'):
     for j in range(len(a_embeddings)):
         for i in range(len(sentence_embeddings)):
             result = 1 - spatial.distance.cosine(sentence_embeddings[i], a_embeddings[j])
-            result2 = spearmanr(sentence_embeddings[i], a_embeddings[j])
             if result > .8:
                 booleon = booleon + 1
                 #print(a[j])
@@ -87,7 +86,6 @@ if st.button('Analysis'):
         for j in range(len(a_embeddings)):
             for i in range(len(optimistic_embeddings)):
                 result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
-                result2 = spearmanr(optimistic_embeddings[i], a_embeddings[j])
                 if result > .8:
                     booleon = booleon -2
 
