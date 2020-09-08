@@ -2,7 +2,7 @@ import streamlit as st
 import nltk as nltk
 import math as math
 from nltk.tokenize import WordPunctTokenizer
-#nltk.download('vader_lexicon')
+nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 sid = SentimentIntensityAnalyzer()
