@@ -6,7 +6,7 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 sid = SentimentIntensityAnalyzer()
-#nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger')
 nltk.download('universal_tagset')
 from nltk.corpus import wordnet_ic
 import scipy
