@@ -65,8 +65,6 @@ if len(a) > 2:
     c = sid.polarity_scores(b)
     score = c['compound']
 d = polarization_heuristic(sentence)
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 EHS = pd.read_csv("EHS.csv")
 sentence_embeddings = EHS.values.tolist()
 OPTO = pd.read_csv("OPTO.csv")
