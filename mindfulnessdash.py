@@ -6,9 +6,9 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 sid = SentimentIntensityAnalyzer()
-nltk.download('averaged_perceptron_tagger')
-nltk.download('universal_tagset')
-from nltk.corpus import wordnet_ic
+#nltk.download('averaged_perceptron_tagger')
+#nltk.download('universal_tagset')
+#from nltk.corpus import wordnet_ic
 import scipy
 import torch
 #import sklearn
@@ -64,7 +64,7 @@ if len(a) > 2:
     b = a[len(a)-2]
     c = sid.polarity_scores(b)
     score = c['compound']
-d = polarization_heuristic(sentence)
+#d = polarization_heuristic(sentence)
 EHS = pd.read_csv("EHS.csv")
 sentence_embeddings = EHS.values.tolist()
 OPTO = pd.read_csv("OPTO.csv")
@@ -93,7 +93,7 @@ if st.button('Analysis'):
     if booleon > 0:
         rent = -.25
 
-    score = 50 + (50*(rent+((score+d-.5)/2)))
+    score = 50 + (50*(rent+((score-.25))))
     st.write('your score is:', score)
     #st.empty()
     if booleon >  2:
