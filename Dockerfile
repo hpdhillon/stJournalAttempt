@@ -23,6 +23,7 @@ CMD streamlit run mindfulnessdash.py
 # streamlit-specific commands for config
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+ENV STREAMLIT_CONFIG_SERVER_ENABLE_CORS=false
 RUN mkdir -p /root/.streamlit
 RUN bash -c 'echo -e "\
 [general]\n\
