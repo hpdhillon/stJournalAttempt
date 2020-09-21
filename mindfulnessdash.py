@@ -6,14 +6,13 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 sid = SentimentIntensityAnalyzer()
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('universal_tagset')
-#from nltk.corpus import wordnet_ic
+nltk.download('averaged_perceptron_tagger')
+nltk.download('universal_tagset')
+from nltk.corpus import wordnet_ic
 import scipy
 import torch
 #import sklearn
 from scipy import spatial
-#from scipy.stats import spearmanr
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 
@@ -46,10 +45,10 @@ def polarization_heuristic(user_journal):
     threshold = math.ceil(len(potential_absolutist_word) * 0.40)
 
     if (threshold == 0):
-        return 0.5 # neutral
+        return 0 # neutral
 
     if (amount_used_in_text/threshold > 1):
-        return 0.0;
+        return -1;
     else:
         return 1 - (amount_used_in_text/threshold);
 
@@ -60,11 +59,12 @@ sentence = st.text_area("what's on your mind?")
 m = sid.polarity_scores(sentence)
 score = m['compound']
 a = sentence.split('.')
+a = a[:len(a)-1]
 if len(a) > 2:
-    b = a[len(a)-2]
+    b = a[len(a)-2]+a[len(a)-1]
     c = sid.polarity_scores(b)
     score = c['compound']
-#d = polarization_heuristic(sentence)
+d = polarization_heuristic(sentence)
 EHS = pd.read_csv("EHS.csv")
 sentence_embeddings = EHS.values.tolist()
 OPTO = pd.read_csv("OPTO.csv")
@@ -86,14 +86,11 @@ if st.button('Analysis'):
                 result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
                 if result > .8:
                     booleon = booleon -2
-
-
-
-    rent = .25
+    rent = .3
     if booleon > 0:
-        rent = -.25
-
-    score = 50 + (50*(rent+((score-.25))))
+        rent = -.3
+    score = 50 + 50*(rent+(score*.4)+(d*.3))
+    #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
     #st.empty()
     if booleon >  2:
