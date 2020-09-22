@@ -60,4 +60,48 @@ m = sid.polarity_scores(sentence)
 score = m['compound']
 a = sentence.split('.')
 a = a[:len(a)-1]
+if len(a) > 2:
+    b = a[len(a)-2]+a[len(a)-1]
+    c = sid.polarity_scores(b)
+    score = c['compound']
+d = polarization_heuristic(sentence)
+EHS = pd.read_csv("EHS.csv")
+sentence_embeddings = EHS.values.tolist()
+OPTO = pd.read_csv("OPTO.csv")
+optimistic_embeddings = OPTO.values.tolist()
 a_embeddings = model.encode(a)
+booleon = 0
+if st.button('Analysis'):
+    for j in range(len(a_embeddings)):
+        for i in range(len(sentence_embeddings)):
+            result = 1 - spatial.distance.cosine(sentence_embeddings[i], a_embeddings[j])
+            if result > .8:
+                booleon = booleon + 1
+                #print(a[j])
+                #st.write('You sound helpless, this sentence concerned me:', a[j])
+                break
+    if booleon > 0:
+        for j in range(len(a_embeddings)):
+            for i in range(len(optimistic_embeddings)):
+                result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
+                if result > .8:
+                    booleon = booleon -2
+    rent = .3
+    if booleon > 0:
+        rent = -.3
+    score = 50 + 50*(rent+(score*.4)+(d*.3))
+    #score = 50 + (50*(rent+((score+d-.5)/2)))
+    st.write('your score is:', score)
+    #st.empty()
+    if booleon >  2:
+        st.write("You sound sad. That's fine. Let it all out.")
+        st.markdown("![Alt Text](https://media.tenor.com/images/ff4a60a02557236c910f864611271df2/tenor.gif)")
+if st.button('Save as text file'):
+    import numpy as np
+    import base64
+    df = pd.DataFrame(a)
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    st.markdown('### **⬇️ download output txt file **')
+    href = f'<a href="data:file/csv;base64,{b64}">download txt file</a> (right-click and save as ".txt")'
+    st.markdown(href, unsafe_allow_html=True)
