@@ -2,8 +2,8 @@ nltk==3.5
 numpy==1.18.5
 pandas==1.1.1
 scipy==1.5.2
-semantic-text-similarity==1.0.3
-pip install -U sentence-transformers
+semantic-text-similarity
+sentence-transformers
 streamlit
 https://download.pytorch.org/whl/cpu/torch-1.6.0%2Bcpu-cp36-cp36m-linux_x86_64.whl
 transformers>=3.1.0,<3.2.0
