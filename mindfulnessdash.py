@@ -14,7 +14,6 @@ import torch
 #import sklearn
 from scipy import spatial
 from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 
 def polarization_heuristic(user_journal):
     # score (0-1) 0 is full helplessness and 1 is super happy
@@ -69,6 +68,7 @@ EHS = pd.read_csv("EHS.csv")
 sentence_embeddings = EHS.values.tolist()
 OPTO = pd.read_csv("OPTO.csv")
 optimistic_embeddings = OPTO.values.tolist()
+model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 a_embeddings = model.encode(a)
 booleon = 0
 if st.button('Analysis'):
