@@ -89,10 +89,8 @@ if st.button('Analysis'):
             for i in range(len(optimistic_embeddings)):
                 result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
                 if result > .8:
-                    booleon = booleon -2
-    rent = .3
-    if booleon > 0:
-        rent = -.3
+                    booleon = booleon - 1
+    rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
     #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
