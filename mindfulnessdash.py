@@ -80,7 +80,7 @@ if st.button('Analysis'):
         for i in range(len(sentence_embeddings)):
             result = 1 - spatial.distance.cosine(sentence_embeddings[i], a_embeddings[j])
             if result > .8:
-                booleon = booleon + 1
+                booleon = booleon - 1
                 #print(a[j])
                 #st.write('You sound helpless, this sentence concerned me:', a[j])
                 break
@@ -89,13 +89,13 @@ if st.button('Analysis'):
             for i in range(len(optimistic_embeddings)):
                 result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
                 if result > .8:
-                    booleon = booleon - 1
+                    booleon = booleon + 1
     rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
     #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
     #st.empty()
-    if booleon >  2:
+    if booleon <  -2:
         st.write("You sound sad. That's fine. Let it all out.")
         st.markdown("![Alt Text](https://media.tenor.com/images/ff4a60a02557236c910f864611271df2/tenor.gif)")
 if st.button('Save as text file'):
