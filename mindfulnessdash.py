@@ -95,10 +95,11 @@ if st.button('Analysis'):
     #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
     #st.empty()
-    if booleon <  -2:
+    if booleon <=  -2:
         st.write("You sound sad. That's fine. Let it all out.")
         st.markdown("![Alt Text](https://media.tenor.com/images/ff4a60a02557236c910f864611271df2/tenor.gif)")
-        st.markdown("[Click here if you need extra help](https://suicidepreventionlifeline.org/chat/)")
+        if booleon < -2
+            st.markdown("[Click here if you need extra help](https://suicidepreventionlifeline.org/chat/)")
     if booleon > 2:
         st.write("You are a ray of sunshine today! Keep it up playa!")
         st.markdown("![Alt Text](https://media.tenor.com/images/2aa9b6f3a7d832c2ff1c1a406d5eae73/tenor.gif)")
