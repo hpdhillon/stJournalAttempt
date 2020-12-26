@@ -87,6 +87,7 @@ def analysis(sentence):
                 result = 1 - spatial.distance.cosine(optimistic_embeddings[i], a_embeddings[j])
                 if result > .8:
                     booleon = booleon + 1
+                    break
     rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
     return score, booleon
@@ -95,7 +96,10 @@ def analysis(sentence):
 sentence = st.text_area("what's on your mind?")
 #button = st.button()
 if len(sentence) > 1:
-    score, booleon = analysis(sentence)
+    if sentence.count(".") == 0:
+        st.write("Write more!")
+    else:
+        score, booleon = analysis(sentence)
 if st.button('Analysis'):
     #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
@@ -118,10 +122,11 @@ if st.button('Save as text file'):
     st.markdown(href, unsafe_allow_html=True)
 #st.header("Insert your username below to save your score")
 username = st.text_input("Username (required for you to save your score & see your day-to-day changes): ")
+today = datetime.today().strftime('%Y-%m-%d')
+
 #st.text_input doesn't work inside the st.button()....gotta figure out why
 #the score saved is the score on the outside
 if st.button('Save my score'):
-    today = datetime.today().strftime('%Y-%m-%d')
     try:
         import csv
         fields= [score, today]
