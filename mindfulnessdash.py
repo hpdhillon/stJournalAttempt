@@ -122,7 +122,7 @@ if st.button('Save as text file'):
     st.markdown(href, unsafe_allow_html=True)
 #st.header("Insert your username below to save your score")
 username = st.text_input("Username (required for you to save your score & see your day-to-day changes): ")
-today = datetime.datetime.now()
+today = datetime.now()
 #st.text_input doesn't work inside the st.button()....gotta figure out why
 #the score saved is the score on the outside
 if st.button('Save my score'):
