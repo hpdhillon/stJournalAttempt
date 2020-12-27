@@ -146,7 +146,7 @@ if st.button('Show my progress'):
         df = df.dropna()
         import matplotlib.pyplot as plt
         df.columns = ["score", "date"]
-        df["date"] = pd.to_datetime(df["date"])
+        #df["date"] = pd.to_datetime(df["date"])
         fig, ax = plt.subplots()
         ax.plot(df["date"], df["score"], 'o')
         st.pyplot(fig)
