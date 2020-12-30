@@ -90,7 +90,13 @@ def analysis(sentence):
                     break
     rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
+    try 
+        lis.append([score, booleon])
+    catch
+        lis = list()
+        lis.append([score, booleon])
     return score, booleon
+
 #st.title('Hello!')
 #st.markdown("![Alt Text](https://data.whicdn.com/images/260389678/original.gif)")
 sentence = st.text_area("what's on your mind?")
