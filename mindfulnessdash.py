@@ -118,14 +118,24 @@ if st.button('Analysis'):
         st.write("You are a ray of sunshine today! Keep it up playa!")
         st.markdown("![Alt Text](https://media.tenor.com/images/2aa9b6f3a7d832c2ff1c1a406d5eae73/tenor.gif)")
 if st.button('Save as text file'):
-    import numpy as np
-    import base64
-    df = pd.DataFrame(a)
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    st.markdown('### **⬇️ download output txt file **')
-    href = f'<a href="data:file/csv;base64,{b64}">download txt file</a> (right-click and save as ".txt")'
-    st.markdown(href, unsafe_allow_html=True)
+    if sentence == "Fat man equals lard dog.":
+        import numpy as np
+        import base64
+        df = pd.DataFrame(lis)
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        st.markdown('### **⬇️ download output txt file **')
+        href = f'<a href="data:file/csv;base64,{b64}">download txt file</a> (right-click and save as ".txt")'
+        st.markdown(href, unsafe_allow_html=True)
+    else:
+        import numpy as np
+        import base64
+        df = pd.DataFrame(a)
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        st.markdown('### **⬇️ download output txt file **')
+        href = f'<a href="data:file/csv;base64,{b64}">download txt file</a> (right-click and save as ".txt")'
+        st.markdown(href, unsafe_allow_html=True)
 #st.header("Insert your username below to save your score")
 username = st.text_input("Username (required for you to save your score & see your day-to-day changes): ")
 today = datetime.now()
