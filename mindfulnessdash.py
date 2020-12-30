@@ -90,11 +90,6 @@ def analysis(sentence):
                     break
     rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
-    try: 
-        lis.append([score, booleon])
-    except:
-        lis = list()
-        lis.append([score, booleon])
     return score, booleon
 
 #st.title('Hello!')
@@ -106,6 +101,12 @@ if len(sentence) > 1:
         st.write("Write more!")
     else:
         score, booleon = analysis(sentence)
+        try: 
+            lis.append([score, booleon])
+        except:
+            lis = list()
+            lis.append([score, booleon])
+            
 if st.button('Analysis'):
     #score = 50 + (50*(rent+((score+d-.5)/2)))
     st.write('your score is:', score)
