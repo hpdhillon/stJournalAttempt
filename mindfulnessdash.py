@@ -90,9 +90,9 @@ def analysis(sentence):
                     break
     rent = .3*(booleon/len(a_embeddings))
     score = 50 + 50*(rent+(score*.4)+(d*.3))
-    try 
+    try: 
         lis.append([score, booleon])
-    catch
+    except:
         lis = list()
         lis.append([score, booleon])
     return score, booleon
