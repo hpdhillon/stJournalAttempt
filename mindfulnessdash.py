@@ -130,7 +130,7 @@ if st.button('Save as text file'):
     else:
         import numpy as np
         import base64
-        df = pd.DataFrame(a)
+        df = pd.DataFrame(sentence)
         csv = df.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()
         st.markdown('### **⬇️ download output txt file **')
